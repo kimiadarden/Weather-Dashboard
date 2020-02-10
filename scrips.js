@@ -13,15 +13,15 @@ $("#serchingInput").keypress(function(event) {
 	} 
 });
 
-
+//function to be able to search for new city using the openweather URL
 $("#serchingBt").on("click", function() {
 
     $('#fiveDayForcast').addClass('show');
   
-    // get the value of the input from user
+    // User input 
     city = $("#serchingInput").val();
     
-    // clear input box
+    // clearing the data 
     $("#serchingInput").val("");  
   
     // URL
@@ -41,6 +41,13 @@ $("#serchingBt").on("click", function() {
   
   
 
+
+    function weatherList() {
+        let userCitynames = $("<li>").addClass("list-group-item").text(city);
+        $(".list").append(userCitynames);
+      }
+    
+    
 
 
 
