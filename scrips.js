@@ -76,3 +76,23 @@ function usersLocation (response) {
   $("#usersCityNow").append(card)
  
 }
+
+
+
+
+  //5 day forcast function:
+function forcastOfUser () {
+  const query2 ="https://api.openweathermap.org/data/2.5/forecast?q=" + city + apiKey;
+
+  $.ajax({
+    url: query2,
+    method: "GET"
+  }).then(function (response){
+    
+    
+    $('#WeatherForecast').empty();
+    
+
+  });
+    
+}
