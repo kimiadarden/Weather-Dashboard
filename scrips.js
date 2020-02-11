@@ -36,7 +36,9 @@ $("#serchingBt").on("click", function () {
       let farenTemp = (response.main.temp - 273.15) * 1.80 + 32;
 
       usersLocation(response);
+      forcastOfUser(response);
       weatherList();
+
     })
 });
 
@@ -92,7 +94,34 @@ function forcastOfUser () {
     
     $('#WeatherForecast').empty();
     
+var output= response.list;
 
+for (var i=0 ;i<output.length;i++){
+//getting the info from dt_txt using console log to find the right location
+var day=Number(output[i].dt_txt.split('-')[2].split('')[0])
+var hour=output[i].dt_txt.split('-')[2].split('')[1]
+
+if(output[i].dt_txt.indexOf("12:00:00") !== -1){
+          
+  // get the temperature and convert to fahrenheit 
+  var temp = (output[i].main.temp - 273.15) * 1.80 + 32;
+  var tempF = Math.floor(temp);
+  
+  const card = $("<div>").addClass("card col-md-2 ml-4 bg-primary text-white");
+  const cardBody = $("<div>").addClass("card-body p-3 forecastBody")
+  const cityDate = $("<h4>").addClass("card-title").text(date.toLocaleDateString('en-US'));
+  const temperature = $("<p>").addClass("card-text forecastTemp").text("Temperature: " + tempF + " °F");
+  const humidity = $("<p>").addClass("card-text forecastHumidity").text("Humidity: " + output[i].main.humidity + "%");
+    
+  cardBody.append(cityDate, temperature,humidity);
+  card.append(cardBody);
+  $("#WeatherForecast").append(card);
+  
+}
+
+
+
+}
   });
     
 }
