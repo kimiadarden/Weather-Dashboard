@@ -112,8 +112,12 @@ if(output[i].dt_txt.indexOf("12:00:00") !== -1){
   const cityDate = $("<h4>").addClass("card-title").text(date.toLocaleDateString('en-US'));
   const temperature = $("<p>").addClass("card-text forecastTemp").text("Temperature: " + tempF + " °F");
   const humidity = $("<p>").addClass("card-text forecastHumidity").text("Humidity: " + output[i].main.humidity + "%");
-    
-  cardBody.append(cityDate, temperature,humidity);
+  
+  console.log(cityDate);
+  
+  const image = $("<img>").attr("src", "https://openweathermap.org/img/w/" + output[i].weather[0].icon + ".png")
+  
+  cardBody.append(cityDate, temperature,humidity,image);
   card.append(cardBody);
   $("#WeatherForecast").append(card);
   
